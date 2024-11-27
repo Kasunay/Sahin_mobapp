@@ -1,6 +1,7 @@
 package com.example.sahin_mobapp
 
-import com.example.xyz.CredentialsManager
+import com.example.sahin_mobapp.CredentialsManager
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.*
 

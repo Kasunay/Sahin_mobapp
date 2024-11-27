@@ -1,0 +1,21 @@
+<resources>
+    <style name="Widget.MyApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="hintTextColor">@color/hint_text_color</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="Widget.MyApp.Button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">16dp</item>
+        <item name="android:backgroundTint">@color/button_background</item>
+        <item name="android:textColor">@color/button_text_color</item>
+    </style>
+
+    <style name="Widget.MyApp.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/checkbox_text_color</item>
+    </style>
+</resources>

@@ -36,59 +36,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/L_AccesYourAccount"
-        android:textColor="#757575"
+        android:textColor="@color/hint_text_color"
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/getStartedText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/passwordInput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:autofillHints="password"
-        android:background="@drawable/rounded_edittext"
-        android:drawableEnd="@drawable/lock"
-        android:drawablePadding="10dp"
-        android:hint="@string/L_EnterPassword"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:textColorHint="#616161"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailInput" />
-
-    <EditText
-        android:id="@+id/emailInput"
+    <!-- Email Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:autofillHints="emailAddress"
-        android:background="@drawable/rounded_edittext"
-        android:drawableEnd="@drawable/mail"
-        android:drawablePadding="10dp"
-        android:hint="@string/L_EnterMail"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:textColorHint="#616161"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitleText" />
+        app:layout_constraintTop_toBottomOf="@id/subtitleText">
 
-    <TextView
-        android:id="@+id/termsText"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/L_EnterMail"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/hint_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Password Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/L_ForgetPassword"
-        android:textColor="#2962FF"
-        android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@id/termsCheckbox"
-        app:layout_constraintTop_toTopOf="@id/termsCheckbox" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/L_EnterPassword"
+            android:inputType="textPassword"
+            android:textColorHint="@color/hint_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
         android:id="@+id/termsCheckbox"
@@ -98,17 +89,31 @@
         android:layout_marginTop="4dp"
         android:text="@string/L_RememberMe"
         android:textSize="11sp"
+        android:textColor="@color/checkbox_text_color"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordInput" />
+        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
 
-    <Button
+    <TextView
+        android:id="@+id/termsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/L_ForgetPassword"
+        android:textColor="@color/link_color"
+        android:textSize="11sp"
+        app:layout_constraintStart_toEndOf="@id/termsCheckbox"
+        app:layout_constraintTop_toTopOf="@id/termsCheckbox" />
+
+    <!-- Next Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:backgroundTint="#6C63FF"
+        android:backgroundTint="@color/button_background"
         android:text="@string/R_Next"
-        android:textColor="#000000"
+        android:textColor="@color/button_text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +142,7 @@
             android:clickable="true"
             android:focusable="true"
             android:text="@string/L_registerNow"
-            android:textColor="#6C63FF"
+            android:textColor="@color/link_color"
             android:textSize="14sp"
             android:textStyle="bold"
             tools:ignore="TouchTargetSizeCheck" />
