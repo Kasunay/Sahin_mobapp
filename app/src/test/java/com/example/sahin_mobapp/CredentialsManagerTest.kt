@@ -1,44 +1,42 @@
-package com.example.sahin_mobapp
-
 import com.example.sahin_mobapp.CredentialsManager
-import junit.framework.TestCase.assertEquals
+import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.*
 
 class CredentialsManagerTest {
 
+    private lateinit var credentialsManager: CredentialsManager
+
+
     @Test
-    fun givenEmptyEmail_thenReturnFalse() {
-        val credentialsManager = CredentialsManager()
-        val isEmailValid = credentialsManager.isEmailValid("")
-        assertEquals(false, isEmailValid)
+    fun testIsEmailValid() {
+        assertFalse(credentialsManager.isEmailValid(""))
+        assertFalse(credentialsManager.isEmailValid("invalidemail"))
+        assertTrue(credentialsManager.isEmailValid("valid.email@example.com"))
     }
 
     @Test
-    fun givenWrongFormatEmail_thenReturnFalse() {
-        val credentialsManager = CredentialsManager()
-        val isEmailValid = credentialsManager.isEmailValid("wrongEmailFormat")
-        assertEquals(false, isEmailValid)
+    fun testIsPasswordValid() {
+        assertFalse(credentialsManager.isPasswordValid(""))
+        assertTrue(credentialsManager.isPasswordValid("validPassword123"))
+        assertFalse(credentialsManager.isPasswordValid("short"))
     }
 
     @Test
-    fun givenProperEmail_thenReturnTrue() {
-        val credentialsManager = CredentialsManager()
-        val isEmailValid = credentialsManager.isEmailValid("test@example.com")
-        assertEquals(true, isEmailValid)
+    fun testRegister() {
+        assertTrue(credentialsManager.register("test@te.st", "password123"))
+        assertFalse(credentialsManager.register("test@te.st", "newPassword123"))
+        assertFalse(credentialsManager.register("TEST@TE.ST", "password123"))
+        assertFalse(credentialsManager.register("invalidemail.com", "password123"))
+        assertFalse(credentialsManager.register("valid@te.st", "short"))
     }
 
     @Test
-    fun givenEmptyPassword_thenReturnFalse() {
-        val credentialsManager = CredentialsManager()
-        val isPasswordValid = credentialsManager.isPasswordValid("")
-        assertEquals(false, isPasswordValid)
-    }
-
-    @Test
-    fun givenFilledPassword_thenReturnTrue() {
-        val credentialsManager = CredentialsManager()
-        val isPasswordValid = credentialsManager.isPasswordValid("password123")
-        assertEquals(true, isPasswordValid)
+    fun testAuthenticate() {
+        credentialsManager.register("test@te.st", "password123")
+        assertTrue(credentialsManager.authenticate("test@te.st", "password123"))
+        assertFalse(credentialsManager.authenticate("test@te.st", "wrongPassword"))
+        assertFalse(credentialsManager.authenticate("nonexistent@te.st", "password123"))
     }
 }
+
