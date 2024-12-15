@@ -1,44 +1,55 @@
-package com.example.sahin_mobapp
-
 import com.example.sahin_mobapp.CredentialsManager
-import junit.framework.TestCase.assertEquals
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.*
 
 class CredentialsManagerTest {
 
     @Test
-    fun givenEmptyEmail_thenReturnFalse() {
-        val credentialsManager = CredentialsManager()
-        val isEmailValid = credentialsManager.isEmailValid("")
-        assertEquals(false, isEmailValid)
+    fun testEmailValidation() {
+        assertTrue(CredentialsManager.isValidEmail("test@example.com"))
+        assertEquals(false, CredentialsManager.isValidEmail("invalid-email"))
     }
 
     @Test
-    fun givenWrongFormatEmail_thenReturnFalse() {
-        val credentialsManager = CredentialsManager()
-        val isEmailValid = credentialsManager.isEmailValid("wrongEmailFormat")
-        assertEquals(false, isEmailValid)
+    fun testPasswordValidation() {
+        assertTrue(CredentialsManager.isValidPassword("password123"))
+        assertEquals(false, CredentialsManager.isValidPassword(""))
     }
 
     @Test
-    fun givenProperEmail_thenReturnTrue() {
-        val credentialsManager = CredentialsManager()
-        val isEmailValid = credentialsManager.isEmailValid("test@example.com")
-        assertEquals(true, isEmailValid)
+    fun testRegistration() {
+        val email = "user1@example.com"
+        val password = "securePass"
+        val result = CredentialsManager.register(email, password)
+
+        assertEquals("Registration successful.", result)
+        assertEquals(password, CredentialsManager.getAllAccounts()[email])
     }
 
     @Test
-    fun givenEmptyPassword_thenReturnFalse() {
-        val credentialsManager = CredentialsManager()
-        val isPasswordValid = credentialsManager.isPasswordValid("")
-        assertEquals(false, isPasswordValid)
+    fun testDuplicateRegistration() {
+        val email = "duplicate@example.com"
+        val password = "pass123"
+
+        // First registration
+        val firstResult = CredentialsManager.register(email, password)
+        assertEquals("Registration successful.", firstResult)
+
+        // Attempt to register with the same email again
+        val secondResult = CredentialsManager.register(email, "newPass123")
+        assertEquals("Email is already registered.", secondResult)
     }
 
     @Test
-    fun givenFilledPassword_thenReturnTrue() {
-        val credentialsManager = CredentialsManager()
-        val isPasswordValid = credentialsManager.isPasswordValid("password123")
-        assertEquals(true, isPasswordValid)
+    fun testLoginValidation() {
+        val email = "login@example.com"
+        val password = "mypassword"
+
+        CredentialsManager.register(email, password)
+
+        assertTrue(CredentialsManager.isValidLogin(email, password))
+
+        assertEquals(false, CredentialsManager.isValidLogin(email, "wrongpassword"))
     }
 }

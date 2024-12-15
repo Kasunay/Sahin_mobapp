@@ -52,7 +52,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitleText">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullNameInput"
             android:layout_width="match_parent"
@@ -72,7 +71,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fullNameInputLayout">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailInput"
             android:layout_width="match_parent"
@@ -92,7 +90,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailInputLayout">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phoneInput"
             android:layout_width="match_parent"
@@ -112,7 +109,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/phoneInputLayout">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
@@ -154,7 +150,6 @@
         app:layout_constraintTop_toBottomOf="@id/nextButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
         <TextView
             android:id="@+id/alreadyMemberText"
             android:layout_width="wrap_content"
@@ -162,7 +157,6 @@
             android:text="@string/R_AlreadyMem"
             android:textColor="@color/text_color"
             android:textSize="14sp" />
-
         <TextView
             android:id="@+id/logInText"
             android:layout_width="wrap_content"
@@ -172,7 +166,6 @@
             android:textSize="14sp"
             android:clickable="true"
             android:focusable="true" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
