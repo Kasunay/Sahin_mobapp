@@ -2,57 +2,66 @@ package com.example.sahin_mobapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class LogInActivity : AppCompatActivity() {
 
-    private val emailInputLayout: TextInputLayout by lazy { findViewById(R.id.emailInputLayout) }
-    private val passwordInputLayout: TextInputLayout by lazy { findViewById(R.id.passwordInputLayout) }
-    private val credentialsManager = CredentialsManager()
+    private val emailField: TextInputEditText
+        get() = findViewById(R.id.emailInput)
+
+    private val passwordField: TextInputEditText
+        get() = findViewById(R.id.passwordInput)
+
+    private val emailLayout: TextInputLayout
+        get() = findViewById(R.id.emailInputLayout)
+
+    private val passwordLayout: TextInputLayout
+        get() = findViewById(R.id.passwordInputLayout)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
 
+        findViewById<TextView>(R.id.registerNowText).setOnClickListener {
+            navigateToRegister()
+        }
+
         findViewById<com.google.android.material.button.MaterialButton>(R.id.nextButton).setOnClickListener {
-            validateAndProceed()
+            handleLogin()
         }
     }
 
-    private fun validateAndProceed() {
-        val email = emailInputLayout.editText?.text.toString()
-        val password = passwordInputLayout.editText?.text.toString()
+    private fun navigateToRegister() {
+        val intent = Intent(this, CreateAccountActivity::class.java)
+        startActivity(intent)
+    }
 
-        if (!credentialsManager.isEmailValid(email)) {
-            emailInputLayout.error = if (email.isEmpty()) {
-                "Email cannot be empty"
-            } else {
-                "Invalid email format"
-            }
-            return
-        } else {
-            emailInputLayout.error = null
-        }
+    private fun handleLogin() {
+        val email = emailField.text.toString().trim()
+        val password = passwordField.text.toString().trim()
 
-        // Validate password
-        if (!credentialsManager.isPasswordValid(password)) {
-            passwordInputLayout.error = "Password cannot be empty"
-            return
-        } else {
-            passwordInputLayout.error = null
-        }
+        clearErrors()
 
-        // hardcoded credentials
-        if (email == "test@te.st" && password == "1234") {
-            navigateToMainActivity()
-        } else {
-            Toast.makeText(this, "Invalid credentials. Please try again.", Toast.LENGTH_SHORT).show()
+        when {
+            email.isEmpty() -> emailLayout.error = "Email cannot be empty"
+            !CredentialsManager.isEmailValid(email) -> emailLayout.error = "Invalid email format"
+            password.isEmpty() -> passwordLayout.error = "Password cannot be empty"
+            CredentialsManager.isHardcodedCredentials(email, password) -> navigateToMain()
+            CredentialsManager.validateLogin(email, password) -> navigateToMain()
+            else -> Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun navigateToMainActivity() {
+    private fun clearErrors() {
+        emailLayout.error = null
+        passwordLayout.error = null
+    }
+
+    private fun navigateToMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
