@@ -11,6 +11,12 @@
       <SelectionState runConfigName="emailValidation_returns_INVALID_for_incorrect_format()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="isEmailValid_returnsTrue_forValidEmail()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="isEmailValid_returnsFalse_forInvalidEmail()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
