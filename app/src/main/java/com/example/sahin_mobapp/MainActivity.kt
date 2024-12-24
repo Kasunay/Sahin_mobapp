@@ -11,14 +11,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Set the initial fragment to FragmentA
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
                 replace<FragmentA>(R.id.fragmentContainer)
             }
         }
 
-        // Toggle fragments on button click
         findViewById<View>(R.id.toggleButton).setOnClickListener {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
             supportFragmentManager.commit {
