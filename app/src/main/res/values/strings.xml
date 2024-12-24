@@ -19,5 +19,7 @@
     <string name="L_ForgetPassword">Forget password?</string>
     <string name="L_NewMember">New member?</string>
     <string name="L_registerNow"> Register now</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
