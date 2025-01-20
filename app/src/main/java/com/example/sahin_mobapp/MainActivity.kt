@@ -1,32 +1,49 @@
 package com.example.sahin_mobapp
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var adapter: ItemAdapter
+    private val sampleItems = listOf(
+        Item(1, "Tonkotsu Ramen", "Is a Japanese noodle soup dish that originated in Fukuoka, Fu..", R.drawable.ramen),
+        Item(2, "Takoyaki", "Is a Japanese snack that originated in Osaka, Japan. It is a ball-shaped cake made fr..", R.drawable.takoyaki),
+        Item(3, "Seafood Udon", "A Japanese-style dish that’s quick and easy to prepare..", R.drawable.udon)
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                replace<FragmentA>(R.id.fragmentContainer)
-            }
-        }
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        findViewById<View>(R.id.toggleButton).setOnClickListener {
-            val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
-            supportFragmentManager.commit {
-                if (currentFragment is FragmentA) {
-                    replace<FragmentB>(R.id.fragmentContainer)
-                    addToBackStack(null) // Add FragmentB to back stack
-                } else {
-                    supportFragmentManager.popBackStack() // Go back to FragmentA
-                }
+        adapter = ItemAdapter(
+            itemList = sampleItems,
+            onItemClicked = { item ->
+                navigateToDetail(item)
+            },
+            onLikeClicked = { item ->
+                Toast.makeText(this, "You liked: ${item.name}", Toast.LENGTH_SHORT).show()
+            },
+            onShareClicked = { item ->
+                Toast.makeText(this, "You shared: ${item.name}", Toast.LENGTH_SHORT).show()
             }
+        )
+        recyclerView.adapter = adapter
+    }
+
+    private fun navigateToDetail(item: Item) {
+        val intent = Intent(this, ItemDetailActivity::class.java).apply {
+            putExtra("ITEM_ID", item.itemId)
+            putExtra("ITEM_NAME", item.name)
+            putExtra("ITEM_IMAGE_RES", item.imageResource)
         }
+        startActivity(intent)
     }
 }

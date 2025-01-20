@@ -21,5 +21,8 @@
 
         <!-- MainActivity -->
         <activity android:name=".MainActivity" />
+
+        <activity android:name=".ItemDetailActivity" />
+
     </application>
 </manifest>
