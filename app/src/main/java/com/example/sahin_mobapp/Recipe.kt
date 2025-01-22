@@ -1,6 +1,6 @@
 package com.example.sahin_mobapp
 
-data class Item(
+data class Recipe(
     val itemId: Int,
     val name: String,
     val details: String,

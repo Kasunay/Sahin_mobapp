@@ -5,11 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemAdapter(
-    private var itemList: List<Item>,
-    private val onItemClicked: (Item) -> Unit,
-    private val onLikeClicked: (Item) -> Unit,
-    private val onShareClicked: (Item) -> Unit
+    private var itemList: List<Recipe>,
+    private val onItemClicked: (Recipe) -> Unit,
+    private val onLikeClicked: (Recipe) -> Unit,
+    private val onShareClicked: (Recipe) -> Unit
 ) : RecyclerView.Adapter<ItemViewHolder>() {
+
+    fun updateItems(newItems: List<Recipe>) {
+        itemList = newItems
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_layout, parent, false)

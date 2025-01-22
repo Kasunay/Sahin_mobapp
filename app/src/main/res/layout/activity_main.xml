@@ -1,22 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragmentContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <!-- Search View or Other UI Elements -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:queryHint="Search recipes..." />
-
-    <!-- RecyclerView for displaying the list -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical" />
-
-</LinearLayout>
+    android:layout_height="match_parent" />

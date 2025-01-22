@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Title of the item -->
     <TextView
         android:id="@+id/detailTextView"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Image of the item -->
     <ImageView
         android:id="@+id/detailImageView"
         android:layout_width="match_parent"
@@ -23,7 +21,6 @@
         android:scaleType="centerCrop"
         android:contentDescription="@string/image_representing_the_item" />
 
-    <!-- Description or additional details -->
     <TextView
         android:id="@+id/detailDescription"
         android:layout_width="match_parent"
